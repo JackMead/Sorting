@@ -33,12 +33,12 @@ namespace Sorting
             var massiveList = new List<int>();
             var massiverList = new List<int>();
             var random = new Random();
-            for (int i = 0; i < 20000; i++)
+            for (int i = 0; i < 30000; i++)
             {
-                massiverList.Add(random.Next(100000));
+                massiverList.Add(random.Next(1000));
                 if (i % 2 == 0)
                 {
-                    massiveList.Add(random.Next(100000));
+                    massiveList.Add(random.Next(1000));
                 }
             }
             Console.WriteLine("Selection Sort Time Test:");
@@ -100,15 +100,18 @@ namespace Sorting
                 var firstSmallerElement = -1;
                 for (int j = i - 1; j >= 0; j--)
                 {
-                    if (list[i] > list[j])
+                    if (list[i] >= list[j])
                     {
                         firstSmallerElement = j;
                         break;
                     }
                 }
-                var temp = list[i];
-                list.RemoveAt(i);
-                list.Insert(firstSmallerElement+1, temp);
+                if (firstSmallerElement + 1 != i)
+                {
+                    var temp = list[i];
+                    list.RemoveAt(i);
+                    list.Insert(firstSmallerElement + 1, temp);
+                }
             }
             return list;
         }
